@@ -19,8 +19,12 @@ var D,VT,GT,cur="home",typed=false,taps=0,bg=null,root=$("app"),busy=false;
 var PG=[["home","❤️ الرئيسية"],["messages","💌 رسائل"],["photos","📸 صور"],["videos","🎬 فيديوهات"],["music","🎵 موسيقى"],["counter","⏳ العداد"],["surprises","🎁 مفاجآت"]];
 
 fx();
-if(!ready)needSetup();else sb.auth.getSession().then(function(r){if(r.data.session)start(false);else gate()});
-
+if(!ready)needSetup();
+else {
+  sb.auth.signOut({scope:"local"}).finally(function(){
+    gate();
+  });
+}
 /* صفحة كلمة السر */
 async function gate(){
   root.innerHTML='<div class="center"><div class="box"><div class="em">🔒</div><h2>حكايتنا</h2><div class="words" id="gw"></div><input id="vp" type="password" aria-label="كلمة السر"><button class="btn" id="vb">ادخل</button><div class="err" id="ve"></div></div></div>';
