@@ -2,7 +2,7 @@
 -- لو غيّرت إيميل الأدمن، غيّره هنا وفي config.js
 
 create or replace function public.is_admin() returns boolean language sql stable as $$
-  select coalesce(auth.jwt()->>'email','') = 'admin@hekayetna.app'
+  select coalesce(auth.jwt()->>'email','') = 'admin@bosy.app'
 $$;
 
 create table if not exists public.settings(key text primary key, value text not null default '');
